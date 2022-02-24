@@ -1,0 +1,24 @@
+﻿<Window x:Class="SimpleBindingDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleBindingDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Button Name="MyButton"
+                    Content="Button"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Width="75" />
+
+            <Label Name="myLabel1" Content="{Binding Supermarkt}" />
+            <Label Name="myLabel2" Content="{Binding Snackbar}" />
+            <Label Name="myLabel3" Content="{Binding Tijd}" />
+            
+        </StackPanel>
+        
+    </Grid>
+</Window>
