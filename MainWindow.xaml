@@ -17,8 +17,18 @@
             <Label Name="myLabel1" Content="{Binding Supermarkt}" />
             <Label Name="myLabel2" Content="{Binding Snackbar}" />
             <Label Name="myLabel3" Content="{Binding Tijd}" />
-            
+
+
+            <ComboBox HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      Width="120"
+                      ItemsSource="{Binding maanden}"
+                      SelectedItem="{Binding SelectedMonth, Mode=TwoWay}" />
+
+            <Label Content="{Binding SelectedMonth}" />
         </StackPanel>
         
+
+
     </Grid>
 </Window>

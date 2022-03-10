@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -26,6 +27,16 @@ namespace SimpleBindingDemo
         System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         private string _Tijd;
 
+        private string[] _maanden = new string[12];
+
+        private oMaand[] _zodiacs = new oMaand[12];
+
+        private List<string> _maandenGL = new List<string>();
+
+            
+
+        private string _selectedMonth;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -39,6 +50,59 @@ namespace SimpleBindingDemo
             
             Tijd = DateTime.Now.ToString("h:mm:ss tt");
             //OnPropertyChanged("Tijd");
+
+            _maanden[0] = "januari";
+            _maanden[1] = "februari";
+            _maanden[2] = "maart";
+            _maanden[3] = "april";
+            _maanden[4] = "mei";
+            _maanden[5] = "juni";
+            _maanden[6] = "juli";
+            _maanden[7] = "augustust";
+            _maanden[8] = "september";
+            _maanden[9] = "oktober";
+            _maanden[10] = "november";
+            _maanden[11] = "december";
+
+            for (int i=0;i < _maanden.Length; i++)
+            {
+                Debug.WriteLine(_maanden[i]);
+
+            }
+
+            foreach(string m in _maanden)
+            {
+                Debug.WriteLine(m);
+            }
+
+            fill_zodiacs();
+            fill_GL();
+            oSom s = new oSom();
+            s.generate();
+
+
+        }
+
+        private void fill_GL()
+        {
+
+            for (int i = 0; i<12; i++)
+            {
+                _maandenGL.Add(i.ToString());
+            }
+            
+        }
+
+        private void fill_zodiacs()
+        {
+            for (int i = 0; i < _zodiacs.Length; i++)
+            {
+                oMaand NewZodiac = new oMaand();
+                NewZodiac.name = "sterrebeeld " + i;
+                NewZodiac.zodiac = "zodiac " + i;
+                _zodiacs[i] = NewZodiac; 
+
+            }
         }
 
         private void DispatcherTimer_Tick(object sender, EventArgs e)
@@ -66,6 +130,31 @@ namespace SimpleBindingDemo
             } 
         }
         
+        public string[] maanden
+        {
+            get
+            {
+                return _maanden;
+            }
+            set
+            {
+                _maanden = value;
+                OnPropertyChanged("maanden");
+            }
+        }
+
+        public string SelectedMonth { 
+            get 
+            { 
+                return _selectedMonth;
+            }
+            
+            set 
+            { 
+                _selectedMonth = value;
+                OnPropertyChanged("SelectedMonth");
+            }
+        }
 
         // Create the OnPropertyChanged method to raise the event
         // The calling member's name will be used as the parameter.
