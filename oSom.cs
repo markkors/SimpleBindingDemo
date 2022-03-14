@@ -28,16 +28,21 @@ namespace SimpleBindingDemo
         public void generate()
         {
 
-           
+
+            // instelling voor de EVAL functie zodat ook doubles werken
+            EvalManager.DefaultContext.DefaultNumberType = DefaultNumberType.Double;
+
 
             int x = _rnd.Next(1, 100);
             int y = _rnd.Next(1, 100);
             int o =_rnd.Next(0, 4);
-            Debug.WriteLine(o);
+            
 
             Question = String.Format("{0} {1} {2}", x, _operator[o], y);
-            int result = Eval.Execute<int>(Question);
+            double result = Eval.Execute<double>(Question);
+            Debug.WriteLine(result);
             Oplossing = result.ToString();
+
 
             OnPropertyChanged("Oplossing");
             OnPropertyChanged("Question");

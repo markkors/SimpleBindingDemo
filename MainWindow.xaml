@@ -5,14 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleBindingDemo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        Height="450"
+        Width="800">
     <Grid>
         <StackPanel>
-            
 
-            <Label Name="myLabel1" Content="{Binding Supermarkt}" />
-            <Label Name="myLabel2" Content="{Binding Snackbar}" />
-            <Label Name="myLabel3" Content="{Binding Tijd}" />
+
+            <Label Name="myLabel1"
+                   Content="{Binding Supermarkt}" />
+            <Label Name="myLabel2"
+                   Content="{Binding Snackbar}" />
+            <Label Name="myLabel3"
+                   Content="{Binding Tijd}" />
 
 
             <ComboBox HorizontalAlignment="Left"
@@ -25,7 +30,8 @@
             <ComboBox HorizontalAlignment="Left"
                       VerticalAlignment="Top"
                       Width="120"
-                      ItemsSource="{Binding Sommen}">
+                      ItemsSource="{Binding Sommen}"
+                      Name="cmbSommen">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Green"
@@ -36,9 +42,11 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button  Content="Button" x:Name="MyButton"/>
+            <Label Content="{Binding Oplossing}"></Label>
+            <Button  Content="Button"
+                     x:Name="MyButton" />
         </StackPanel>
-        
+
 
 
     </Grid>

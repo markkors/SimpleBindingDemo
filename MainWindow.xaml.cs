@@ -51,7 +51,10 @@ namespace SimpleBindingDemo
             dispatcherTimer.Interval = new TimeSpan(1000);
             
             Tijd = DateTime.Now.ToString("h:mm:ss tt");
-            //OnPropertyChanged("Tijd");
+            OnPropertyChanged("Tijd");
+
+            cmbSommen.SelectionChanged += CmbSommen_SelectionChanged;
+
 
             _maanden[0] = "januari";
             _maanden[1] = "februari";
@@ -90,6 +93,12 @@ namespace SimpleBindingDemo
             
         }
 
+        private void CmbSommen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           oSom s = (oSom)e.AddedItems[0];
+           Oplossing = s.Oplossing.ToString();
+           OnPropertyChanged("Oplossing");
+        }
 
         private void addSom(Random r)
         {
@@ -137,9 +146,6 @@ namespace SimpleBindingDemo
             Supermarkt = "Albert Heijn";
             OnPropertyChanged("Supermarkt");
 
-
-           
-
         }
 
         public string Supermarkt { get; set; }
@@ -180,6 +186,7 @@ namespace SimpleBindingDemo
 
         public oSom GeneratedSum { get; set; }
 
+        public string Oplossing { get; set; }
 
         public ObservableCollection<oSom> Sommen { 
             get 
