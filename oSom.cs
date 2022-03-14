@@ -1,32 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Z.Expressions;
 
 namespace SimpleBindingDemo
 {
-    public class oSom
+    public class oSom: INotifyPropertyChanged
+
     {
 
-        private string[] _operator = new string[] { "+", "-", "*" };
+        private string[] _operator = new string[] { "+", "-", "*","/" };
+        private Random _rnd;
 
-        private string _oplossing;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public oSom(Random r)
+        {
+            _rnd = r;
+           
+        }
 
         public void generate()
         {
 
-            Random rnd = new Random();
-            int x = rnd.Next(1, 100);
-            int y = rnd.Next(1, 100);
-            int o = rnd.Next(0, 2);
+           
 
+            int x = _rnd.Next(1, 100);
+            int y = _rnd.Next(1, 100);
+            int o =_rnd.Next(0, 4);
+            Debug.WriteLine(o);
 
-            int result = Eval.Execute<int>("X" + _operator[o] + "Y", new { X = x, Y = y });
-            _oplossing = result.ToString();
+            Question = String.Format("{0} {1} {2}", x, _operator[o], y);
+            int result = Eval.Execute<int>(Question);
+            Oplossing = result.ToString();
 
+            OnPropertyChanged("Oplossing");
+            OnPropertyChanged("Question");
         }
 
+
+        public string Oplossing { get; set; }
+        public string Question { get; set; }
+
+
+        // Create the OnPropertyChanged method to raise the event
+        // The calling member's name will be used as the parameter.
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }

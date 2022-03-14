@@ -8,11 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <StackPanel>
-            <Button Name="MyButton"
-                    Content="Button"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Width="75" />
+            
 
             <Label Name="myLabel1" Content="{Binding Supermarkt}" />
             <Label Name="myLabel2" Content="{Binding Snackbar}" />
@@ -26,6 +22,21 @@
                       SelectedItem="{Binding SelectedMonth, Mode=TwoWay}" />
 
             <Label Content="{Binding SelectedMonth}" />
+            <ComboBox HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      Width="120"
+                      ItemsSource="{Binding Sommen}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Green"
+                                BorderThickness="1"
+                                Padding="5">
+                            <TextBlock Text="{Binding Path=Question,StringFormat='Som: {0}'}" />
+                        </Border>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button  Content="Button" x:Name="MyButton"/>
         </StackPanel>
         
 

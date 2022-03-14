@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,7 +35,7 @@ namespace SimpleBindingDemo
 
         private List<string> _maandenGL = new List<string>();
 
-            
+        private ObservableCollection<oSom> _Sommen = new ObservableCollection<oSom>();    
 
         private string _selectedMonth;
 
@@ -77,10 +79,26 @@ namespace SimpleBindingDemo
 
             fill_zodiacs();
             fill_GL();
-            oSom s = new oSom();
-            s.generate();
+
+            // voeg 10 sommen toe
+
+            Random r = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                addSom(r);
+            }
+            
+        }
 
 
+        private void addSom(Random r)
+        {
+            
+            GeneratedSum = new oSom(r);
+            GeneratedSum.generate();
+            Sommen.Add(GeneratedSum);
+            OnPropertyChanged("Sommen");
+            
         }
 
         private void fill_GL()
@@ -118,6 +136,10 @@ namespace SimpleBindingDemo
             dispatcherTimer.Start();
             Supermarkt = "Albert Heijn";
             OnPropertyChanged("Supermarkt");
+
+
+           
+
         }
 
         public string Supermarkt { get; set; }
@@ -156,6 +178,20 @@ namespace SimpleBindingDemo
             }
         }
 
+        public oSom GeneratedSum { get; set; }
+
+
+        public ObservableCollection<oSom> Sommen { 
+            get 
+            { return _Sommen; } 
+            set 
+            { 
+                _Sommen = value;
+                OnPropertyChanged("Sommen");
+            } 
+        }
+
+
         // Create the OnPropertyChanged method to raise the event
         // The calling member's name will be used as the parameter.
         protected void OnPropertyChanged([CallerMemberName] string name = null)
@@ -163,6 +199,6 @@ namespace SimpleBindingDemo
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-
+        
     }
 }
