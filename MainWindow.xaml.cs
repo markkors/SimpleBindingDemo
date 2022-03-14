@@ -135,7 +135,7 @@ namespace SimpleBindingDemo
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
             Tijd = DateTime.Now.ToString("h:mm:ss tt");
-            //OnPropertyChanged("Tijd");
+            OnPropertyChanged("Tijd");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
