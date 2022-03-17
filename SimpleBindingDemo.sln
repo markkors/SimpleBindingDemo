@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31829.152
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBindingDemo", "SimpleBindingDemo.csproj", "{11BD3C1B-792D-4C51-961E-0D9B8BC8B1A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppDemo2", "..\WpfAppDemo2\WpfAppDemo2.csproj", "{879DAEB9-1536-4C7F-9804-2D8D969AFD53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppDemo2", "WpfAppDemo2\WpfAppDemo2.csproj", "{879DAEB9-1536-4C7F-9804-2D8D969AFD53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
